@@ -34,9 +34,9 @@ export function Navbar() {
             variant="ghost"
             className="hidden sm:inline-flex text-muted-foreground hover:text-foreground"
           >
-            Masuk
+            Login
           </Button>
-          <Button className="font-medium shadow-sm">Buat Formulir</Button>
+          <Button className="font-medium shadow-sm">Create Form</Button>
         </div>
       </div>
     </nav>

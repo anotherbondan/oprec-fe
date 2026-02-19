@@ -9,7 +9,6 @@ export default function AuthLayout({
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-secondary/20 px-4 py-12">
       <div className="w-full max-w-md space-y-6">
-        {/* Header / Logo (Akan muncul di Login & Register) */}
         <div className="flex flex-col items-center justify-center space-y-2 text-center">
           <Link href="/" className="flex items-center gap-2 mb-4 transition-opacity hover:opacity-90">
             <div className="bg-primary/10 p-2 rounded-xl">
@@ -18,8 +17,6 @@ export default function AuthLayout({
             <span className="font-bold text-2xl tracking-tight">FormBuilder</span>
           </Link>
         </div>
-
-        {/* Konten Halaman (Card Login atau Register akan dirender di sini) */}
         {children}
       </div>
     </div>
