@@ -13,19 +13,17 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4 lg:grid-cols-5">
           <div className="md:col-span-2 lg:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-              </div>
+              <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center"></div>
               <span className="text-xl font-bold">FormBuilder</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
-              Platform pembuat formulir terbaik untuk mengumpulkan data, membuat
-              survei interaktif, dan menganalisis respons dengan cepat dan
-              mudah.
+              The best form builder platform to collect data, create interactive
+              surveys, and analyze responses quickly and easily.
             </p>
           </div>
 
           <div className="flex flex-col gap-4">
-            <h3 className="font-semibold text-foreground">Produk</h3>
+            <h3 className="font-semibold text-foreground">Product</h3>
             {PRODUCT_LINKS.map((link) => (
               <Link
                 key={link.name}
@@ -38,7 +36,7 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col gap-4">
-            <h3 className="font-semibold text-foreground">Perusahaan</h3>
+            <h3 className="font-semibold text-foreground">Company</h3>
             {COMPANY_LINKS.map((link) => (
               <Link
                 key={link.name}

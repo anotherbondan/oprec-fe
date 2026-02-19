@@ -1,18 +1,18 @@
 export const MENU_ITEMS = [
   {
-    label: "Fitur",
+    label: "Features",
     href: "#",
   },
   {
-    label: "Templat",
+    label: "Templates",
     href: "#",
   },
   {
-    label: "Integrasi",
+    label: "Integrations",
     href: "#",
   },
   {
-    label: "Harga",
+    label: "Pricing",
     href: "#",
   },
 ];

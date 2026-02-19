@@ -17,10 +17,10 @@ export default function LoginPage() {
     <Card className="border-muted shadow-lg">
       <CardHeader className="space-y-1 text-center">
         <CardTitle className="text-2xl font-semibold tracking-tight">
-          Selamat Datang Kembali
+          Welcome Back
         </CardTitle>
         <CardDescription>
-          Masukkan email dan kata sandi Anda untuk masuk ke dashboard
+          Enter your email and password to login to dashboard
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -31,7 +31,12 @@ export default function LoginPage() {
           >
             Email
           </label>
-          <Input id="email" type="email" placeholder="nama@email.com" required />
+          <Input
+            id="email"
+            type="email"
+            placeholder="nama@email.com"
+            required
+          />
         </div>
         <div className="space-y-2">
           <div className="flex items-center justify-between">
@@ -39,23 +44,31 @@ export default function LoginPage() {
               htmlFor="password"
               className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
-              Kata Sandi
+              Password
             </label>
             <Link href="#" className="text-sm text-primary hover:underline">
-              Lupa sandi?
+              Forgot password?
             </Link>
           </div>
-          <Input id="password" type="password" placeholder="••••••••" required />
+          <Input
+            id="password"
+            type="password"
+            placeholder="••••••••"
+            required
+          />
         </div>
       </CardContent>
       <CardFooter className="flex flex-col space-y-4">
         <Button className="w-full" size="lg">
-          Masuk
+          Login
         </Button>
         <div className="text-sm text-center text-muted-foreground">
-          Belum punya akun?{" "}
-          <Link href="/register" className="text-primary font-medium hover:underline">
-            Daftar sekarang
+          Don't have an account?{" "}
+          <Link
+            href="/register"
+            className="text-primary font-medium hover:underline"
+          >
+            Register now
           </Link>
         </div>
       </CardFooter>

@@ -24,21 +24,21 @@ export const SOCIAL_MEDIA = [
 ];
 
 export const PRODUCT_LINKS = [
-  { name: "Templat Formulir", href: "#" },
-  { name: "Integrasi Data", href: "#" },
-  { name: "Harga & Paket", href: "#" },
-  { name: "Fitur Analitik", href: "#" },
+  { name: "Form Templates", href: "#" },
+  { name: "Data Integrations", href: "#" },
+  { name: "Pricing & Plans", href: "#" },
+  { name: "Analytics Features", href: "#" },
 ];
 
 export const COMPANY_LINKS = [
-  { name: "Tentang Kami", href: "#" },
-  { name: "Panduan Pengguna", href: "#" },
+  { name: "About Us", href: "#" },
+  { name: "User Guide", href: "#" },
   { name: "Blog", href: "#" },
-  { name: "Kontak Bantuan", href: "#" },
+  { name: "Help Center", href: "#" },
 ];
 
 export const LEGAL_LINKS = [
-  { name: "Kebijakan Privasi", href: "#" },
-  { name: "Syarat & Ketentuan", href: "#" },
-  { name: "Keamanan Data", href: "#" },
+  { name: "Privacy Policy", href: "#" },
+  { name: "Terms & Conditions", href: "#" },
+  { name: "Data Security", href: "#" },
 ];

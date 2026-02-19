@@ -33,26 +33,26 @@ export default function Home() {
       <main className="w-full flex-1">
         <section className="container mx-auto max-w-6xl pt-32 pb-32 flex flex-col items-center text-center space-y-8 px-4 md:px-6">
           <Badge variant="secondary" className="px-4 py-1 text-sm rounded-full">
-            ✨ Form Builder v1.0 Kini Tersedia
+            ✨ Form Builder v1.0 Now Available
           </Badge>
 
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight max-w-4xl text-foreground">
-            Kumpulkan Data Lebih Mudah dengan{" "}
-            <span className="text-primary">Formulir Cerdas</span>
+            Collect Data Easily with{" "}
+            <span className="text-primary">Smart Forms</span>
           </h1>
 
           <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-            Platform pembuat formulir dinamis untuk survei, pendaftaran, dan
-            kuesioner. Didesain untuk kecepatan pembuatan, kemudahan berbagi,
-            dan analisis respons secara langsung.
+            Dynamic form builder platform for surveys, registrations, and
+            questionnaires. Designed for speed of creation, ease of sharing, and
+            real-time response analysis.
           </p>
 
           <div className="flex flex-wrap gap-4 justify-center pt-6">
             <Button size="lg" className="px-8 shadow-lg">
-              Buat Formulir Gratis <ArrowRight className="ml-2 w-4 h-4" />
+              Create Free Form <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
             <Button variant="outline" size="lg" className="px-8">
-              Jelajahi Fitur
+              Explore Features
             </Button>
           </div>
         </section>
@@ -65,15 +65,15 @@ export default function Home() {
                   <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4 text-primary">
                     <Zap className="w-6 h-6" />
                   </div>
-                  <CardTitle>Pembuatan Instan</CardTitle>
+                  <CardTitle>Instant Creation</CardTitle>
                   <CardDescription>
-                    Rancang formulir kompleks dalam hitungan menit.
+                    Design complex forms in minutes.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Gunakan antarmuka yang intuitif untuk menambahkan berbagai
-                    macam tipe input tanpa perlu keahlian coding.
+                    Use an intuitive interface to add various input types
+                    without needing coding skills.
                   </p>
                 </CardContent>
               </Card>
@@ -83,15 +83,15 @@ export default function Home() {
                   <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4 text-primary">
                     <ShieldCheck className="w-6 h-6" />
                   </div>
-                  <CardTitle>Validasi & Keamanan</CardTitle>
+                  <CardTitle>Validation & Security</CardTitle>
                   <CardDescription>
-                    Kumpulkan data yang akurat dan tersimpan dengan aman.
+                    Collect accurate data kept securely.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Dilengkapi dengan validasi input bawaan untuk mencegah data
-                    spam dan enkripsi untuk melindungi privasi responden Anda.
+                    Equipped with built-in input validation to prevent spam data
+                    and encryption to protect your respondents' privacy.
                   </p>
                 </CardContent>
               </Card>
@@ -101,15 +101,15 @@ export default function Home() {
                   <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4 text-primary">
                     <BarChart3 className="w-6 h-6" />
                   </div>
-                  <CardTitle>Analisis Respons</CardTitle>
+                  <CardTitle>Response Analysis</CardTitle>
                   <CardDescription>
-                    Pantau hasil pengumpulan data secara real-time.
+                    Monitor data collection results in real-time.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Dapatkan wawasan langsung dari respons yang masuk melalui
-                    dashboard analitik yang rapi dan mudah diekspor.
+                    Get direct insights from incoming responses via a clean and
+                    easily exportable analytics dashboard.
                   </p>
                 </CardContent>
               </Card>
@@ -121,27 +121,26 @@ export default function Home() {
           <div className="flex flex-col md:flex-row gap-12 lg:gap-20 items-center justify-center">
             <div className="flex-1 space-y-6 max-w-lg">
               <h2 className="text-3xl font-bold tracking-tight">
-                Kelola Formulir di Satu Tempat
+                Manage Forms in One Place
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed">
-                Antarmuka kami dirancang agar ramah pengguna. Anda dapat membuat
-                formulir baru, mengatur privasi, dan membagikan tautan survei
-                hanya dengan beberapa klik.
+                Our interface is designed to be user-friendly. You can create
+                new forms, set privacy, and share survey links with just a few
+                clicks.
               </p>
 
               <div className="flex flex-wrap gap-4 pt-2">
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button variant="default" className="shadow-md">
-                      Coba Buat Formulir
+                      Try Creating a Form
                     </Button>
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-106.25">
                     <DialogHeader>
-                      <DialogTitle>Formulir Baru</DialogTitle>
+                      <DialogTitle>New Form</DialogTitle>
                       <DialogDescription>
-                        Tentukan judul dan deskripsi untuk formulir pertama
-                        Anda.
+                        Define the title and description for your first form.
                       </DialogDescription>
                     </DialogHeader>
                     <div className="grid gap-4 py-4">
@@ -150,11 +149,11 @@ export default function Home() {
                           htmlFor="title"
                           className="text-right text-sm font-medium"
                         >
-                          Judul
+                          Title
                         </label>
                         <Input
                           id="title"
-                          defaultValue="Survei Kepuasan"
+                          defaultValue="Satisfaction Survey"
                           className="col-span-3"
                         />
                       </div>
@@ -163,11 +162,11 @@ export default function Home() {
                           htmlFor="desc"
                           className="text-right text-sm font-medium"
                         >
-                          Deskripsi
+                          Description
                         </label>
                         <Input
                           id="desc"
-                          defaultValue="Mohon isi dengan jujur"
+                          defaultValue="Please fill in honestly"
                           className="col-span-3"
                         />
                       </div>
@@ -176,10 +175,10 @@ export default function Home() {
                       <Button
                         type="submit"
                         onClick={() =>
-                          toast.success("Formulir berhasil dibuat!")
+                          toast.success("Form successfully created!")
                         }
                       >
-                        Simpan Formulir
+                        Save Form
                       </Button>
                     </DialogFooter>
                   </DialogContent>
@@ -188,17 +187,17 @@ export default function Home() {
                 <Button
                   variant="outline"
                   onClick={() =>
-                    toast("Tautan Disalin", {
+                    toast("Link Copied", {
                       description:
-                        "Tautan formulir Anda siap dibagikan ke responden.",
+                        "Your form link is ready to be shared with respondents.",
                       action: {
-                        label: "Tutup",
-                        onClick: () => console.log("Tutup"),
+                        label: "Close",
+                        onClick: () => console.log("Close"),
                       },
                     })
                   }
                 >
-                  Simulasi Bagikan Tautan
+                  Simulate Share Link
                 </Button>
               </div>
             </div>
@@ -209,24 +208,24 @@ export default function Home() {
 
                 <Card className="relative border-muted shadow-xl bg-card">
                   <CardHeader>
-                    <CardTitle>Akses Pembuat</CardTitle>
+                    <CardTitle>Creator Access</CardTitle>
                     <CardDescription>
-                      Masuk ke dashboard untuk mengelola formulir Anda.
+                      Login to dashboard to manage your forms.
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="space-y-2">
                       <label className="text-sm font-medium">Email</label>
-                      <Input placeholder="nama@email.com" />
+                      <Input placeholder="name@email.com" />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-sm font-medium">Kata Sandi</label>
+                      <label className="text-sm font-medium">Password</label>
                       <Input type="password" placeholder="••••••••" />
                     </div>
                   </CardContent>
                   <CardFooter>
                     <Button className="w-full shadow-sm">
-                      Masuk Dashboard
+                      Login Dashboard
                     </Button>
                   </CardFooter>
                 </Card>
@@ -241,19 +240,18 @@ export default function Home() {
 
             <div className="relative z-10">
               <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">
-                Siap Membuat Formulir Pertama Anda?
+                Ready to Create Your First Form?
               </h2>
               <p className="text-primary-foreground/80 max-w-2xl mx-auto mb-10 text-lg md:text-xl">
-                Mulai kumpulkan data dengan cara yang lebih cerdas, rapi, dan
-                terstruktur. Sempurnakan proses pengambilan keputusan Anda
-                sekarang juga.
+                Start collecting data smarter, neater, and more structured.
+                Perfect your decision-making process right now.
               </p>
               <Button
                 variant="secondary"
                 size="lg"
                 className="font-semibold px-8 h-12 text-md shadow-lg hover:bg-secondary/90 transition-colors"
               >
-                Mulai Gratis Sekarang
+                Start for Free Now
               </Button>
             </div>
           </div>
