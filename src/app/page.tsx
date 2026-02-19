@@ -21,8 +21,8 @@ import {
   DialogTrigger,
 } from "@/src/components/ui/dialog";
 import { toast } from "sonner";
-import { Navbar } from "@/src/components/elements/Navbar";
-import { Footer } from "@/src/components/elements/Footer";
+import { Navbar } from "@/src/components/elements/Navbar/Navbar";
+import { Footer } from "@/src/components/elements/Footer/Footer";
 import { ArrowRight, BarChart3, ShieldCheck, Zap } from "lucide-react";
 
 export default function Home() {
@@ -33,26 +33,26 @@ export default function Home() {
       <main className="w-full flex-1">
         <section className="container mx-auto max-w-6xl pt-32 pb-32 flex flex-col items-center text-center space-y-8 px-4 md:px-6">
           <Badge variant="secondary" className="px-4 py-1 text-sm rounded-full">
-            ✨ Versi 2.0 Kini Tersedia
+            ✨ Form Builder v1.0 Kini Tersedia
           </Badge>
 
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight max-w-4xl text-foreground">
-            Tingkatkan Produktivitas Bisnis Anda dengan{" "}
-            <span className="text-primary">Solusi Cerdas</span>
+            Kumpulkan Data Lebih Mudah dengan{" "}
+            <span className="text-primary">Formulir Cerdas</span>
           </h1>
 
           <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-            Platform all-in-one untuk mengelola tim, proyek, dan keuangan Anda.
-            Didesain untuk kecepatan, keamanan, dan skalabilitas perusahaan
-            modern.
+            Platform pembuat formulir dinamis untuk survei, pendaftaran, dan
+            kuesioner. Didesain untuk kecepatan pembuatan, kemudahan berbagi,
+            dan analisis respons secara langsung.
           </p>
 
           <div className="flex flex-wrap gap-4 justify-center pt-6">
             <Button size="lg" className="px-8 shadow-lg">
-              Mulai Sekarang <ArrowRight className="ml-2 w-4 h-4" />
+              Buat Formulir Gratis <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
             <Button variant="outline" size="lg" className="px-8">
-              Pelajari Lebih Lanjut
+              Jelajahi Fitur
             </Button>
           </div>
         </section>
@@ -65,16 +65,15 @@ export default function Home() {
                   <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4 text-primary">
                     <Zap className="w-6 h-6" />
                   </div>
-                  <CardTitle>Otomasi Cepat</CardTitle>
+                  <CardTitle>Pembuatan Instan</CardTitle>
                   <CardDescription>
-                    Hemat waktu dengan alur kerja otomatis yang berjalan 24/7
-                    tanpa henti.
+                    Rancang formulir kompleks dalam hitungan menit.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Integrasikan dengan alat favorit Anda dan biarkan sistem
-                    kami menangani tugas repetitif secara instan.
+                    Gunakan antarmuka yang intuitif untuk menambahkan berbagai
+                    macam tipe input tanpa perlu keahlian coding.
                   </p>
                 </CardContent>
               </Card>
@@ -84,16 +83,15 @@ export default function Home() {
                   <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4 text-primary">
                     <ShieldCheck className="w-6 h-6" />
                   </div>
-                  <CardTitle>Keamanan Enterprise</CardTitle>
+                  <CardTitle>Validasi & Keamanan</CardTitle>
                   <CardDescription>
-                    Data Anda dilindungi dengan enkripsi tingkat militer dan
-                    kepatuhan global.
+                    Kumpulkan data yang akurat dan tersimpan dengan aman.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Kami mengutamakan privasi dengan fitur keamanan terdepan di
-                    industri untuk ketenangan pikiran Anda.
+                    Dilengkapi dengan validasi input bawaan untuk mencegah data
+                    spam dan enkripsi untuk melindungi privasi responden Anda.
                   </p>
                 </CardContent>
               </Card>
@@ -103,16 +101,15 @@ export default function Home() {
                   <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4 text-primary">
                     <BarChart3 className="w-6 h-6" />
                   </div>
-                  <CardTitle>Analitik Real-time</CardTitle>
+                  <CardTitle>Analisis Respons</CardTitle>
                   <CardDescription>
-                    Pantau pertumbuhan bisnis Anda dengan dashboard yang
-                    intuitif dan akurat.
+                    Pantau hasil pengumpulan data secara real-time.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Dapatkan wawasan mendalam (insights) untuk mengambil
-                    keputusan bisnis yang lebih baik dan terukur.
+                    Dapatkan wawasan langsung dari respons yang masuk melalui
+                    dashboard analitik yang rapi dan mudah diekspor.
                   </p>
                 </CardContent>
               </Card>
@@ -124,53 +121,53 @@ export default function Home() {
           <div className="flex flex-col md:flex-row gap-12 lg:gap-20 items-center justify-center">
             <div className="flex-1 space-y-6 max-w-lg">
               <h2 className="text-3xl font-bold tracking-tight">
-                Kelola Akun dengan Mudah
+                Kelola Formulir di Satu Tempat
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed">
-                Antarmuka kami dirancang agar ramah pengguna. Anda dapat
-                mengubah pengaturan, mengelola tim, dan mendapatkan notifikasi
-                penting tanpa kerumitan teknis.
+                Antarmuka kami dirancang agar ramah pengguna. Anda dapat membuat
+                formulir baru, mengatur privasi, dan membagikan tautan survei
+                hanya dengan beberapa klik.
               </p>
 
               <div className="flex flex-wrap gap-4 pt-2">
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button variant="default" className="shadow-md">
-                      Coba Edit Profil
+                      Coba Buat Formulir
                     </Button>
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-106.25">
                     <DialogHeader>
-                      <DialogTitle>Edit Profil</DialogTitle>
+                      <DialogTitle>Formulir Baru</DialogTitle>
                       <DialogDescription>
-                        Lakukan perubahan pada profil Anda di sini. Klik simpan
-                        setelah selesai.
+                        Tentukan judul dan deskripsi untuk formulir pertama
+                        Anda.
                       </DialogDescription>
                     </DialogHeader>
                     <div className="grid gap-4 py-4">
                       <div className="grid grid-cols-4 items-center gap-4">
                         <label
-                          htmlFor="name"
+                          htmlFor="title"
                           className="text-right text-sm font-medium"
                         >
-                          Nama
+                          Judul
                         </label>
                         <Input
-                          id="name"
-                          defaultValue="Budi Santoso"
+                          id="title"
+                          defaultValue="Survei Kepuasan"
                           className="col-span-3"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-4">
                         <label
-                          htmlFor="username"
+                          htmlFor="desc"
                           className="text-right text-sm font-medium"
                         >
-                          Username
+                          Deskripsi
                         </label>
                         <Input
-                          id="username"
-                          defaultValue="@budi.tech"
+                          id="desc"
+                          defaultValue="Mohon isi dengan jujur"
                           className="col-span-3"
                         />
                       </div>
@@ -179,10 +176,10 @@ export default function Home() {
                       <Button
                         type="submit"
                         onClick={() =>
-                          toast.success("Profil berhasil diperbarui!")
+                          toast.success("Formulir berhasil dibuat!")
                         }
                       >
-                        Simpan Perubahan
+                        Simpan Formulir
                       </Button>
                     </DialogFooter>
                   </DialogContent>
@@ -191,16 +188,17 @@ export default function Home() {
                 <Button
                   variant="outline"
                   onClick={() =>
-                    toast("Notifikasi Terkirim", {
-                      description: "Laporan bulanan Anda siap diunduh.",
+                    toast("Tautan Disalin", {
+                      description:
+                        "Tautan formulir Anda siap dibagikan ke responden.",
                       action: {
-                        label: "Unduh",
-                        onClick: () => console.log("Unduh"),
+                        label: "Tutup",
+                        onClick: () => console.log("Tutup"),
                       },
                     })
                   }
                 >
-                  Lihat Notifikasi
+                  Simulasi Bagikan Tautan
                 </Button>
               </div>
             </div>
@@ -211,17 +209,15 @@ export default function Home() {
 
                 <Card className="relative border-muted shadow-xl bg-card">
                   <CardHeader>
-                    <CardTitle>Akses Member</CardTitle>
+                    <CardTitle>Akses Pembuat</CardTitle>
                     <CardDescription>
-                      Contoh tampilan login yang bersih dan aman.
+                      Masuk ke dashboard untuk mengelola formulir Anda.
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="space-y-2">
-                      <label className="text-sm font-medium">
-                        Email Bisnis
-                      </label>
-                      <Input placeholder="nama@perusahaan.com" />
+                      <label className="text-sm font-medium">Email</label>
+                      <Input placeholder="nama@email.com" />
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-medium">Kata Sandi</label>
@@ -245,18 +241,19 @@ export default function Home() {
 
             <div className="relative z-10">
               <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">
-                Siap untuk memulai?
+                Siap Membuat Formulir Pertama Anda?
               </h2>
               <p className="text-primary-foreground/80 max-w-2xl mx-auto mb-10 text-lg md:text-xl">
-                Bergabunglah dengan lebih dari 10,000 perusahaan yang telah
-                mempercayai kami untuk transformasi digital mereka.
+                Mulai kumpulkan data dengan cara yang lebih cerdas, rapi, dan
+                terstruktur. Sempurnakan proses pengambilan keputusan Anda
+                sekarang juga.
               </p>
               <Button
                 variant="secondary"
                 size="lg"
                 className="font-semibold px-8 h-12 text-md shadow-lg hover:bg-secondary/90 transition-colors"
               >
-                Daftar Gratis Sekarang
+                Mulai Gratis Sekarang
               </Button>
             </div>
           </div>
