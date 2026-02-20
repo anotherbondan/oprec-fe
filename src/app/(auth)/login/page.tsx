@@ -31,7 +31,7 @@ export default function LoginPage() {
 
   const loginMutation = useMutation({
     mutationFn: async (credentials: typeof formData) => {
-      return await customFetch("/api/auth/login", {
+      return await customFetch("/auth/login", {
         method: "POST",
         body: JSON.stringify(credentials),
       });
@@ -39,6 +39,7 @@ export default function LoginPage() {
     onSuccess: (data: any) => {
       if (data.access_token) {
         localStorage.setItem("token", data.access_token);
+        localStorage.setItem("user", JSON.stringify(data.user));
       }
 
       toast.success("Login success!");

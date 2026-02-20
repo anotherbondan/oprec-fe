@@ -8,7 +8,25 @@ import { cn } from "@/src/lib/utils";
 
 const Dialog = DialogPrimitive.Root;
 
-const DialogTrigger = DialogPrimitive.Trigger;
+const DialogTrigger = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Trigger>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Trigger>
+>(({ className, ...props }, ref) => (
+  <DialogPrimitive.Trigger
+    ref={ref}
+    className={cn(
+      "inline-flex items-center justify-center rounded-lg text-sm font-medium transition-colors",
+      "bg-primary text-primary-foreground shadow-sm",
+      "hover:bg-primary/90",
+      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+      "disabled:pointer-events-none disabled:opacity-50",
+      "h-10 px-4 py-2",
+      className
+    )}
+    {...props}
+  />
+));
+DialogTrigger.displayName = DialogPrimitive.Trigger.displayName;
 
 const DialogPortal = DialogPrimitive.Portal;
 
@@ -21,7 +39,7 @@ const DialogOverlay = React.forwardRef<
   <DialogPrimitive.Overlay
     ref={ref}
     className={cn(
-      "fixed inset-0 z-50 bg-black/40 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      "fixed inset-0 z-50 bg-black/30 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
       className,
     )}
     {...props}

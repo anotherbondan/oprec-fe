@@ -21,8 +21,8 @@ import {
   DialogTrigger,
 } from "@/src/components/ui/dialog";
 import { toast } from "sonner";
-import { Navbar } from "@/src/components/elements/Navbar/Navbar";
-import { Footer } from "@/src/components/elements/Footer/Footer";
+import { Navbar } from "@/src/components/elements/Navbar";
+import { Footer } from "@/src/components/elements/Footer";
 import { ArrowRight, BarChart3, ShieldCheck, Zap } from "lucide-react";
 
 export default function Home() {
@@ -224,9 +224,7 @@ export default function Home() {
                     </div>
                   </CardContent>
                   <CardFooter>
-                    <Button className="w-full shadow-sm">
-                      Login
-                    </Button>
+                    <Button className="w-full shadow-sm">Login</Button>
                   </CardFooter>
                 </Card>
               </div>
