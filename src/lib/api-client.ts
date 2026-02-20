@@ -10,13 +10,14 @@ export async function customFetch<T>(
       'Content-Type': 'application/json',
       ...options.headers,
     },
+    credentials: 'include'
   };
 
   const response = await fetch(`${BASE_URL}${endpoint}`, config);
 
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}));
-    throw new Error(errorData.message || 'Terjadi kesalahan pada server');
+    throw new Error(errorData.message || 'Something went wrong');
   }
 
   return response.json();

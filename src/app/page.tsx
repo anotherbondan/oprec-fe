@@ -210,7 +210,7 @@ export default function Home() {
                   <CardHeader>
                     <CardTitle>Creator Access</CardTitle>
                     <CardDescription>
-                      Login to dashboard to manage your forms.
+                      Login to manage your forms.
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
@@ -225,7 +225,7 @@ export default function Home() {
                   </CardContent>
                   <CardFooter>
                     <Button className="w-full shadow-sm">
-                      Login Dashboard
+                      Login
                     </Button>
                   </CardFooter>
                 </Card>

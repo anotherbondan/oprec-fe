@@ -30,12 +30,14 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-4">
-          <Button
-            variant="ghost"
-            className="hidden sm:inline-flex text-muted-foreground hover:text-foreground"
-          >
-            Login
-          </Button>
+          <Link href="/login">
+            <Button
+              variant="ghost"
+              className="hidden sm:inline-flex text-muted-foreground hover:text-foreground"
+            >
+              Login
+            </Button>
+          </Link>
           <Button className="font-medium shadow-sm">Create Form</Button>
         </div>
       </div>
