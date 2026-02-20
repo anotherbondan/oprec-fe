@@ -33,7 +33,7 @@ export default function RegisterPage() {
 
   const registerMutation = useMutation({
     mutationFn: async (userData: any) => {
-      return await customFetch("/auth/register", {
+      return await customFetch("/api/auth/register", {
         method: "POST",
         body: JSON.stringify({
           name: userData.name,

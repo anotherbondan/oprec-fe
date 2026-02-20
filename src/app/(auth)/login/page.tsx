@@ -31,7 +31,7 @@ export default function LoginPage() {
 
   const loginMutation = useMutation({
     mutationFn: async (credentials: typeof formData) => {
-      return await customFetch("/auth/login", {
+      return await customFetch("/api/auth/login", {
         method: "POST",
         body: JSON.stringify(credentials),
       });
