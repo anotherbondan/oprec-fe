@@ -97,21 +97,21 @@ export default function FormsPage() {
   });
 
   const deleteFormMutation = useMutation({
-  mutationFn: async (id: string) => {
-    return await customFetch(`/forms/${id}`, {
-      method: "DELETE",
-    });
-  },
+    mutationFn: async (id: string) => {
+      return await customFetch(`/forms/${id}`, {
+        method: "DELETE",
+      });
+    },
 
-  onSuccess: () => {
-    toast.success("Form deleted successfully!");
-    queryClient.invalidateQueries({ queryKey: ["forms"] });
-  },
+    onSuccess: () => {
+      toast.success("Form deleted successfully!");
+      queryClient.invalidateQueries({ queryKey: ["forms"] });
+    },
 
-  onError: (error: Error) => {
-    toast.error(error.message);
-  },
-});
+    onError: (error: Error) => {
+      toast.error(error.message);
+    },
+  });
 
   const [mounted, setMounted] = useState(false);
 
@@ -212,7 +212,7 @@ export default function FormsPage() {
                 </Button>
                 <Dialog>
                   <DialogTrigger className="bg-transparent shadow-none hover:bg-neutral-100">
-                      <Trash2 className="w-4 h-4 text-red-600" />
+                    <Trash2 className="w-4 h-4 text-red-600" />
                   </DialogTrigger>
                   <DialogContent>
                     <DialogHeader>
@@ -227,7 +227,10 @@ export default function FormsPage() {
                       </DialogClose>
                       <Button
                         onClick={() => deleteFormMutation.mutate(form.id)}
-                        disabled={deleteFormMutation.isPending && deleteFormMutation.variables === form.id}
+                        disabled={
+                          deleteFormMutation.isPending &&
+                          deleteFormMutation.variables === form.id
+                        }
                       >
                         {deleteFormMutation.isPending
                           ? "Deleting..."
