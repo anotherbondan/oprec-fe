@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Card, CardContent } from "@/src/components/ui/card";
 import { Input } from "@/src/components/ui/input";
 import { Button } from "@/src/components/ui/button";
@@ -46,13 +46,22 @@ function QuestionCard({
   onChangeOption,
   onDeleteOption,
 }: Props) {
+  const [localText, setLocalText] = useState<string | null>(null);
+  const displayText = localText ?? question.text;
+
   return (
     <Card className="mb-4">
       <CardContent className="pt-6">
         <Input
-          value={question.text}
-          onChange={(e) => onChangeText(e.target.value)}
-          onBlur={(e) => onBlurText(e.target.value)}
+          value={displayText}
+          onChange={(e) => {
+            setLocalText(e.target.value);
+            onChangeText(e.target.value);
+          }}
+          onBlur={(e) => {
+            onBlurText(e.target.value);
+            setLocalText(null);
+          }}
           placeholder={`Question ${index + 1}`}
         />
         <select

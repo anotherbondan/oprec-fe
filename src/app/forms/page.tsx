@@ -50,8 +50,9 @@ interface Form {
   id: string;
   title: string;
   description: string;
+  status: string;
   createdAt: string;
-  questions?: Question[];
+  _count: { questions: number };
 }
 
 export default function FormsPage() {
@@ -64,9 +65,14 @@ export default function FormsPage() {
   } = useQuery({
     queryKey: ["forms"],
     queryFn: async () => {
-      return await customFetch<Form[]>("/forms", {
-        method: "GET",
-      });
+      const response = await customFetch<{ data: Form[]; meta: any }>(
+        "/forms",
+        {
+          method: "GET",
+        },
+      );
+
+      return response.data;
     },
   });
 
@@ -200,7 +206,7 @@ export default function FormsPage() {
 
               <CardContent>
                 <p className="text-sm text-muted-foreground font-medium">
-                  {form.questions?.length ?? 0} Questions
+                  {form._count.questions} Questions
                 </p>
               </CardContent>
 
