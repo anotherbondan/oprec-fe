@@ -21,15 +21,12 @@ export default function NotFound() {
       </p>
 
       <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-        <Link href="/">
-          <Button
-            className="w-full sm:w-auto flex items-center gap-2"
-            size="lg"
-          >
+        <Button className="w-full sm:w-auto flex items-center gap-2" size="lg">
+          <Link href="/">
             <Home className="w-4 h-4" />
             Back to Home
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </div>
     </div>
   );

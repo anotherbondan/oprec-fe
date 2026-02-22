@@ -2,61 +2,31 @@
 
 import { useState } from "react";
 import { Button } from "@/src/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/src/components/ui/card";
+import { Card, CardHeader } from "@/src/components/ui/card";
 import { Input } from "@/src/components/ui/input";
-import { ArrowLeft, Plus } from "lucide-react";
+import { ArrowLeft, ChevronDown, Plus } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { customFetch } from "@/src/lib/api-client";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import QuestionCard from "@/src/modules/FormDetailModule/components/QuestionCard";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import QuestionCard from "@/src/modules/FormGroup/EditorViewModule/components/QuestionCard";
 import { toast } from "sonner";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/src/components/ui/dropdown-menu";
+import { FORM_STATUS } from "../const";
+import { Form, Option, Question } from "../interface";
 
-interface Option {
-  id: string;
-  questionId?: string;
-  text: string;
-  order?: number;
-}
-
-interface Question {
-  id: string;
-  formId?: string;
-  text: string;
-  type: string;
-  isRequired: boolean;
-  order?: number;
-  options: Option[];
-}
-
-interface Form {
-  id: string;
-  title: string;
-  description: string;
-  status: string;
-  createdAt: string;
-  questions: Question[];
-}
-
-export default function FormDetailModule() {
+export default function EditorViewPage({form}: {form: Form}) {
   const queryClient = useQueryClient();
   const params = useParams();
   const id = params.id as string;
-
-  // ─── Query: fetch form detail ───
-  const {
-    data: form,
-    isLoading,
-    isError,
-  } = useQuery<Form>({
-    queryKey: ["form", id],
-    queryFn: async () => {
-      return await customFetch(`/forms/${id}`, {
-        method: "GET",
-      });
-    },
-    enabled: !!id,
-  });
 
   // ─── Mutation: update form title/description ───
   const updateFormMutation = useMutation({
@@ -187,22 +157,6 @@ export default function FormDetailModule() {
   const [localTitle, setLocalTitle] = useState<string | null>(null);
   const [localDescription, setLocalDescription] = useState<string | null>(null);
 
-  if (isLoading || !form) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p>Loading form...</p>
-      </div>
-    );
-  }
-
-  if (isError) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p>Failed to load form</p>
-      </div>
-    );
-  }
-
   const displayTitle = localTitle ?? form.title;
   const displayDescription = localDescription ?? form.description;
 
@@ -236,12 +190,37 @@ export default function FormDetailModule() {
   return (
     <div className="min-h-screen bg-secondary/10 py-10 px-4">
       <div className="container mx-auto max-w-3xl">
-        <Button variant="ghost" className="mb-6 px-0" asChild>
-          <Link href="/forms">
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Forms
-          </Link>
-        </Button>
+        <div className="flex w-full items-center justify-between mb-3">
+          <Button variant="ghost" className="px-1" asChild>
+            <Link href="/forms">
+              <ArrowLeft className="w-4 h-4" />
+              Back to Forms
+            </Link>
+          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline">
+                {form.status} <ChevronDown className="w-4 h-4 ml-2" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>Choose Status</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                {FORM_STATUS.map((status) => (
+                  <DropdownMenuItem
+                    key={status.value}
+                    onClick={() =>
+                      updateFormMutation.mutate({ status: status.value })
+                    }
+                  >
+                    {status.label}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
 
         <Card className="border-t-8 border-t-primary shadow-md mb-6">
           <CardHeader>

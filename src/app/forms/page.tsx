@@ -87,7 +87,7 @@ export default function FormsPage() {
       });
     },
 
-    onSuccess: (newForm) => {
+    onSuccess: () => {
       toast.success("Form created successfully!");
 
       queryClient.invalidateQueries({ queryKey: ["forms"] });

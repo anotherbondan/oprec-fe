@@ -88,17 +88,15 @@ export function Navbar() {
             </>
           ) : (
             <>
-              <Link href="/login">
-                <Button
-                  variant="ghost"
-                  className="hidden sm:inline-flex text-muted-foreground hover:text-foreground"
-                >
-                  Login
-                </Button>
-              </Link>
-              <Link href="/register">
-                <Button className="font-medium shadow-sm">Sign Up</Button>
-              </Link>
+              <Button
+                variant="ghost"
+                className="hidden sm:inline-flex text-muted-foreground hover:text-foreground"
+              >
+                <Link href="/login">Login</Link>
+              </Button>
+              <Button className="font-medium shadow-sm">
+                <Link href="/register">Sign Up</Link>
+              </Button>
             </>
           )}
         </div>

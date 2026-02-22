@@ -6,7 +6,7 @@ import { Input } from "@/src/components/ui/input";
 import { Button } from "@/src/components/ui/button";
 import { Plus, Trash2 } from "lucide-react";
 import OptionItem from "./OptionItem";
-import { QUESTION_TYPES } from "../const";
+import { QUESTION_TYPES } from "../../const";
 
 interface Option {
   id: string;

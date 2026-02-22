@@ -6,11 +6,13 @@ import { useRouter } from "next/navigation";
 interface User {
   name: string;
   email?: string;
+  id: string;
 }
 
 export function useAuth() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState<User | null>(null); 
+  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
@@ -26,6 +28,7 @@ export function useAuth() {
       setIsAuthenticated(false);
       setUser(null);
     }
+    setIsLoading(false);
   }, []);
 
   const logout = useCallback(() => {
@@ -36,5 +39,5 @@ export function useAuth() {
     router.push("/login");
   }, [router]);
 
-  return { isAuthenticated, user, logout };
+  return { isAuthenticated, user, logout, isLoading };
 }

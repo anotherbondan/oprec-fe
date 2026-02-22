@@ -5,3 +5,9 @@ export const QUESTION_TYPES = [
   { value: "CHECKBOX", label: "Multiple Choice" },
   { value: "DROPDOWN", label: "Dropdown" },
 ];
+
+export const FORM_STATUS = [
+  { value: "DRAFT", label: "Draft" },
+  { value: "PUBLISHED", label: "Published" },
+  { value: "CLOSED", label: "Closed" },
+];
