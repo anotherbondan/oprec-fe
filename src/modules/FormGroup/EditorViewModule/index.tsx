@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button } from "@/src/components/ui/button";
 import { Card, CardHeader } from "@/src/components/ui/card";
 import { Input } from "@/src/components/ui/input";
-import { ArrowLeft, ChevronDown, Plus } from "lucide-react";
+import { ArrowLeft, ChevronDown, Plus, BarChart3 } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { customFetch } from "@/src/lib/api-client";
@@ -23,7 +23,7 @@ import {
 import { FORM_STATUS } from "../const";
 import { Form, Option, Question } from "../interface";
 
-export default function EditorViewPage({form}: {form: Form}) {
+export default function EditorViewPage({ form }: { form: Form }) {
   const queryClient = useQueryClient();
   const params = useParams();
   const id = params.id as string;
@@ -195,6 +195,12 @@ export default function EditorViewPage({form}: {form: Form}) {
             <Link href="/forms">
               <ArrowLeft className="w-4 h-4" />
               Back to Forms
+            </Link>
+          </Button>
+          <Button variant="outline" asChild>
+            <Link href={`/forms/${id}/submissions`}>
+              <BarChart3 className="w-4 h-4 mr-2" />
+              View Submissions
             </Link>
           </Button>
           <DropdownMenu>

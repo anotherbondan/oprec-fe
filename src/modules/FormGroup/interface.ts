@@ -24,3 +24,26 @@ export interface Form {
   createdAt: string;
   questions: Question[];
 }
+
+export interface Answer {
+  id: string;
+  submissionId: string;
+  questionId: string;
+  value: string;
+}
+
+export interface Submission {
+  id: string;
+  formId: string;
+  createdAt: string;
+  answers: Answer[];
+}
+
+export interface QuestionStats {
+  questionId: string;
+  questionText: string;
+  questionType: string;
+  totalAnswers: number;
+  optionCounts: { label: string; count: number }[];
+  textResponses: string[];
+}
