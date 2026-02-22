@@ -33,7 +33,6 @@ export default function SubmissionViewPage({ form }: SubmissionViewPageProps) {
     enabled: !!formId,
   });
 
-  // Compute per-question statistics from raw submissions
   const questionStats: QuestionStats[] = useMemo(() => {
     if (!form.questions || !submissions) return [];
 
@@ -46,12 +45,10 @@ export default function SubmissionViewPage({ form }: SubmissionViewPageProps) {
         question.type,
       );
 
-      // For choice questions, count how many times each option was selected
       const optionCounts = isChoice
         ? question.options.map((opt) => ({
             label: opt.text,
             count: answers.filter((a) => {
-              // CHECKBOX answers may be comma-separated
               if (question.type === "CHECKBOX") {
                 return a.value
                   .split(",")
@@ -63,7 +60,6 @@ export default function SubmissionViewPage({ form }: SubmissionViewPageProps) {
           }))
         : [];
 
-      // For text questions, collect all text responses
       const textResponses = !isChoice
         ? answers.map((a) => a.value).filter((v) => v.trim() !== "")
         : [];
@@ -82,7 +78,6 @@ export default function SubmissionViewPage({ form }: SubmissionViewPageProps) {
   return (
     <div className="min-h-screen bg-secondary/10 py-10 px-4">
       <div className="container mx-auto max-w-4xl">
-        {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <Button variant="ghost" className="px-1" asChild>
             <Link href={`/forms/${formId}`}>
@@ -99,7 +94,6 @@ export default function SubmissionViewPage({ form }: SubmissionViewPageProps) {
           </p>
         </div>
 
-        {/* Loading */}
         {isLoading && (
           <div className="flex items-center justify-center py-20">
             <div className="text-center space-y-3">
@@ -109,7 +103,6 @@ export default function SubmissionViewPage({ form }: SubmissionViewPageProps) {
           </div>
         )}
 
-        {/* Error */}
         {isError && (
           <div className="flex items-center justify-center py-20">
             <p className="text-destructive">
@@ -118,16 +111,13 @@ export default function SubmissionViewPage({ form }: SubmissionViewPageProps) {
           </div>
         )}
 
-        {/* Content */}
         {submissions && (
           <>
-            {/* Summary cards */}
             <SummaryCards
               submissions={submissions}
               totalQuestions={form.questions?.length ?? 0}
             />
 
-            {/* Empty state */}
             {submissions.length === 0 && (
               <div className="flex flex-col items-center justify-center py-20 text-center">
                 <div className="bg-muted rounded-full p-6 mb-4">
@@ -143,7 +133,6 @@ export default function SubmissionViewPage({ form }: SubmissionViewPageProps) {
               </div>
             )}
 
-            {/* Per-question charts */}
             {submissions.length > 0 && (
               <div className="mt-8 space-y-6">
                 <h2 className="text-xl font-semibold">

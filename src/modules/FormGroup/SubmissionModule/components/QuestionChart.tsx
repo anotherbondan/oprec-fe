@@ -21,26 +21,7 @@ import {
   CartesianGrid,
   ResponsiveContainer,
 } from "recharts";
-
-const CHART_COLORS = [
-  "var(--color-chart-1)",
-  "var(--color-chart-2)",
-  "var(--color-chart-3)",
-  "var(--color-chart-4)",
-  "var(--color-chart-5)",
-];
-
-// Fallback hex colors for recharts (CSS vars may not resolve in SVG)
-const FALLBACK_COLORS = [
-  "#e76e50",
-  "#2a9d8f",
-  "#264653",
-  "#e9c46a",
-  "#f4a261",
-  "#7c3aed",
-  "#06b6d4",
-  "#f43f5e",
-];
+import { FALLBACK_COLORS } from "../../const";
 
 function getTypeLabel(type: string) {
   const labels: Record<string, string> = {
@@ -142,7 +123,6 @@ function ChoiceChart({ stats }: { stats: QuestionStats }) {
     );
   }
 
-  // Pie chart for RADIO / DROPDOWN
   return (
     <div className="w-full flex justify-center">
       <ResponsiveContainer width="100%" height={300}>

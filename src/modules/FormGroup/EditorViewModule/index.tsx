@@ -21,7 +21,7 @@ import {
   DropdownMenuTrigger,
 } from "@/src/components/ui/dropdown-menu";
 import { FORM_STATUS } from "../const";
-import { Form, Option, Question } from "../interface";
+import { Form, Option, Question, QuestionType } from "../interface";
 
 export default function EditorViewPage({ form }: { form: Form }) {
   const queryClient = useQueryClient();
@@ -266,7 +266,7 @@ export default function EditorViewPage({ form }: { form: Form }) {
             onChangeType={(value) => {
               updateQuestionMutation.mutate({
                 questionId: question.id,
-                payload: { type: value },
+                payload: { type: value as QuestionType },
               });
             }}
             onToggleRequired={(value) =>

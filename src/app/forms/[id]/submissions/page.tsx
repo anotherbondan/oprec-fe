@@ -34,7 +34,6 @@ export default function SubmissionsPage() {
     }
   }, [isAuthLoading, currentUser, router]);
 
-  // Only form authors can view submissions
   useEffect(() => {
     if (form && currentUser && form.userId !== currentUser.id) {
       router.push(`/forms/${id}`);

@@ -9,7 +9,7 @@ export interface Question {
   id: string;
   formId?: string;
   text: string;
-  type: string;
+  type: QuestionType;
   isRequired: boolean;
   order?: number;
   options: Option[];
@@ -19,7 +19,7 @@ export interface Form {
   id: string;
   title: string;
   description: string;
-  status: string;
+  status: FormStatus;
   userId: string;
   createdAt: string;
   questions: Question[];
@@ -47,3 +47,6 @@ export interface QuestionStats {
   optionCounts: { label: string; count: number }[];
   textResponses: string[];
 }
+
+export type QuestionType = "SHORT_TEXT" | "LONG_TEXT" | "RADIO" | "CHECKBOX" | "DROPDOWN";
+export type FormStatus = "DRAFT" | "PUBLISHED" | "CLOSED";
