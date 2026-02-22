@@ -11,8 +11,50 @@ import {
   CardTitle,
 } from "@/src/components/ui/card";
 import { Input } from "@/src/components/ui/input";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { customFetch } from "@/src/lib/api-client";
+import { toast } from "sonner";
 
 export default function LoginPage() {
+  const router = useRouter();
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  const loginMutation = useMutation({
+    mutationFn: async (credentials: typeof formData) => {
+      return await customFetch("/auth/login", {
+        method: "POST",
+        body: JSON.stringify(credentials),
+      });
+    },
+    onSuccess: (data: any) => {
+      if (data.access_token) {
+        localStorage.setItem("token", data.access_token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+      }
+
+      toast.success("Login success!");
+
+      router.push("/forms");
+    },
+    onError: (error: Error) => {
+      toast.error(error.message);
+    },
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    loginMutation.mutate(formData);
+  };
   return (
     <Card className="border-muted shadow-lg">
       <CardHeader className="space-y-1 text-center">
@@ -36,6 +78,8 @@ export default function LoginPage() {
             type="email"
             placeholder="nama@email.com"
             required
+            onChange={handleChange}
+            disabled={loginMutation.isPending}
           />
         </div>
         <div className="space-y-2">
@@ -55,11 +99,13 @@ export default function LoginPage() {
             type="password"
             placeholder="••••••••"
             required
+            onChange={handleChange}
+            disabled={loginMutation.isPending}
           />
         </div>
       </CardContent>
       <CardFooter className="flex flex-col space-y-4">
-        <Button className="w-full" size="lg">
+        <Button className="w-full" size="lg" onClick={handleSubmit} disabled={loginMutation.isPending}>
           Login
         </Button>
         <div className="text-sm text-center text-muted-foreground">
