@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/src/components/ui/card";
-import { FileText, Plus, Eye, Trash2 } from "lucide-react";
+import { FileText, Plus, Eye, Trash2, Search, ChevronDown } from "lucide-react";
 import { Navbar } from "@/src/components/elements/Navbar";
 import { Footer } from "@/src/components/elements/Footer";
 import {
@@ -25,26 +25,16 @@ import {
 } from "@/src/components/ui/dialog";
 import { Input } from "@/src/components/ui/input";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { customFetch } from "@/src/lib/api-client";
 import { toast } from "sonner";
-
-interface Option {
-  id: string;
-  questionId: string;
-  text: string;
-  order: number;
-}
-
-interface Question {
-  id: string;
-  formId: string;
-  text: string;
-  type: string;
-  isRequired: boolean;
-  order: number;
-  options: Option[];
-}
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/src/components/ui/dropdown-menu";
 
 interface Form {
   id: string;
@@ -57,16 +47,28 @@ interface Form {
 
 export default function FormsPage() {
   const queryClient = useQueryClient();
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const currentSearch = searchParams.get("search") || "";
+  const currentSort = searchParams.get("sort") || "desc";
+
+  const [searchInput, setSearchInput] = useState(currentSearch);
 
   const {
     data: forms,
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["forms"],
+    queryKey: ["forms", currentSearch, currentSort],
     queryFn: async () => {
+      const params = new URLSearchParams();
+      if (currentSearch) params.append("search", currentSearch);
+      if (currentSort) params.append("sort", currentSort);
+
       const response = await customFetch<{ data: Form[]; meta: any }>(
-        "/forms",
+        `/forms?${params.toString()}`,
         {
           method: "GET",
         },
@@ -118,6 +120,33 @@ export default function FormsPage() {
       toast.error(error.message);
     },
   });
+
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      if (value) {
+        params.set(name, value);
+      } else {
+        params.delete(name);
+      }
+      return params.toString();
+    },
+    [searchParams],
+  );
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (searchInput !== currentSearch) {
+        router.replace(
+          `${pathname}?${createQueryString("search", searchInput)}`,
+          {
+            scroll: false,
+          },
+        );
+      }
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [searchInput, currentSearch, pathname, router, createQueryString]);
 
   const [mounted, setMounted] = useState(false);
 
@@ -181,6 +210,48 @@ export default function FormsPage() {
           </Dialog>
         </div>
 
+        <div className="flex gap-2 items-center mb-4">
+          <div className="relative flex-1 max-w-sm">
+            <Search className="absolute z-10 left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              placeholder="Search forms..."
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              className="pl-9"
+            />
+          </div>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="items-center gap-2">
+                {currentSort === "desc" ? "Newest First" : "Oldest First"}
+                <ChevronDown className="w-4 h-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem
+                onClick={() =>
+                  router.replace(
+                    `${pathname}?${createQueryString("sort", "desc")}`,
+                    { scroll: false },
+                  )
+                }
+              >
+                Newest First
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() =>
+                  router.replace(
+                    `${pathname}?${createQueryString("sort", "asc")}`,
+                    { scroll: false },
+                  )
+                }
+              >
+                Oldest First
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {forms?.map((form) => (
             <Card
@@ -210,15 +281,23 @@ export default function FormsPage() {
                 </p>
               </CardContent>
 
-              <CardFooter className="pt-2 flex gap-2 border-t mt-2">
-                <Button variant="outline" size="sm" className="flex-1" asChild>
+              <CardFooter className="p-4 flex gap-2 border-t mt-2">
+                <Button variant="outline" size="sm" className="flex-1 p-1" asChild>
                   <Link href={`/forms/${form.id}`}>
                     <Eye className="w-4 h-4 mr-2" /> View
                   </Link>
                 </Button>
                 <Dialog>
-                  <DialogTrigger className="bg-transparent shadow-none hover:bg-neutral-100">
-                    <Trash2 className="w-4 h-4 text-red-600" />
+                  <DialogTrigger
+                    asChild
+                    className="shadow-none hover:bg-neutral-100"
+                  >
+                    <Button
+                      size="icon"
+                      className="hover:bg-red-100 hover:text-red-600 p-1"
+                    >
+                      <Trash2 className="w-4 h-4 " />
+                    </Button>
                   </DialogTrigger>
                   <DialogContent>
                     <DialogHeader>
