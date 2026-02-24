@@ -19,6 +19,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/src/components/ui/dropdown-menu";
+import Toggle from "../../ui/toggle";
 
 export function Navbar() {
   const { isAuthenticated, user, logout } = useAuth();
@@ -49,6 +50,7 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-4">
+          <Toggle/>
           {isAuthenticated ? (
             <>
               <DropdownMenu>

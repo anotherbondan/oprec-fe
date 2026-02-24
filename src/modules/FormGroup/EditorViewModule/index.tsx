@@ -193,7 +193,7 @@ export default function EditorViewPage({ form }: { form: Form }) {
         <div className="flex w-full items-center justify-between mb-3">
           <Button variant="ghost" className="px-1" asChild>
             <Link href="/forms">
-              <ArrowLeft className="w-4 h-4" />
+              <ArrowLeft className="w-4 h-4 mr-1" />
               Back to Forms
             </Link>
           </Button>

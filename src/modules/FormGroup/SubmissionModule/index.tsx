@@ -81,7 +81,7 @@ export default function SubmissionViewPage({ form }: SubmissionViewPageProps) {
         <div className="flex items-center justify-between mb-6">
           <Button variant="ghost" className="px-1" asChild>
             <Link href={`/forms/${formId}`}>
-              <ArrowLeft className="w-4 h-4" />
+              <ArrowLeft className="w-4 h-4 mr-1" />
               Back to Form Editor
             </Link>
           </Button>

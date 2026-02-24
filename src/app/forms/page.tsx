@@ -157,7 +157,6 @@ export default function FormsPage() {
   if (!mounted) return null;
   return (
     <div className="min-h-screen bg-secondary/10">
-      <Navbar />
       <main className="container mx-auto max-w-6xl px-4 py-8">
         <div className="flex items-center justify-between mb-8">
           <div>
@@ -282,7 +281,7 @@ export default function FormsPage() {
               </CardContent>
 
               <CardFooter className="p-4 flex gap-2 border-t mt-2">
-                <Button variant="outline" size="sm" className="flex-1 p-1" asChild>
+                <Button variant="outline" size="sm" className="flex-1 p-2" asChild>
                   <Link href={`/forms/${form.id}`}>
                     <Eye className="w-4 h-4 mr-2" /> View
                   </Link>
@@ -329,7 +328,6 @@ export default function FormsPage() {
           ))}
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

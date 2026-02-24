@@ -1,3 +1,4 @@
+import { FileText } from "lucide-react";
 import {
   SOCIAL_MEDIA,
   PRODUCT_LINKS,
@@ -13,7 +14,9 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4 lg:grid-cols-5">
           <div className="md:col-span-2 lg:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center"></div>
+              <div className="bg-primary/10 p-1.5 rounded-lg">
+                <FileText className="w-5 h-5 text-primary fill-primary/20" />
+              </div>
               <span className="text-xl font-bold">FormBuilder</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
