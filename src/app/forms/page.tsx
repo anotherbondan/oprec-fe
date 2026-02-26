@@ -11,8 +11,6 @@ import {
   CardTitle,
 } from "@/src/components/ui/card";
 import { FileText, Plus, Eye, Trash2, Search, ChevronDown } from "lucide-react";
-import { Navbar } from "@/src/components/elements/Navbar";
-import { Footer } from "@/src/components/elements/Footer";
 import {
   Dialog,
   DialogClose,
@@ -67,14 +65,14 @@ export default function FormsPage() {
       if (currentSearch) params.append("search", currentSearch);
       if (currentSort) params.append("sort", currentSort);
 
-      const response = await customFetch<{ data: Form[]; meta: any }>(
+      const response = await customFetch<Form[]>(
         `/forms?${params.toString()}`,
         {
           method: "GET",
         },
       );
 
-      return response.data;
+      return response;
     },
   });
 
