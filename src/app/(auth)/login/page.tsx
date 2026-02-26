@@ -79,12 +79,12 @@ export default function LoginPage() {
           />
         </div>
         <div className="space-y-2">
-          <label
+          <Label
             htmlFor="password"
             className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
           >
             Password
-          </label>
+          </Label>
           <Input
             id="password"
             type="password"

@@ -24,11 +24,10 @@ export default function SubmissionViewPage({ form }: SubmissionViewPageProps) {
   } = useQuery<Submission[]>({
     queryKey: ["submissions", formId],
     queryFn: async () => {
-      const response = await customFetch<{ data: Submission[] }>(
+      return await customFetch<Submission[]>(
         `/forms/${formId}/submissions`,
         { method: "GET" },
       );
-      return response.data;
     },
     enabled: !!formId,
   });

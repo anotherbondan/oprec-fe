@@ -22,13 +22,13 @@ import {
 } from "@/src/components/ui/dropdown-menu";
 import { FORM_STATUS } from "../const";
 import { Form, Option, Question, QuestionType } from "../interface";
+import FormHeader from "./components/FormHeader";
 
 export default function EditorViewPage({ form }: { form: Form }) {
   const queryClient = useQueryClient();
   const params = useParams();
   const id = params.id as string;
 
-  // ─── Mutation: update form title/description ───
   const updateFormMutation = useMutation({
     mutationFn: async (payload: Partial<Form>) => {
       return await customFetch(`/forms/${id}`, {
@@ -41,7 +41,6 @@ export default function EditorViewPage({ form }: { form: Form }) {
     },
   });
 
-  // ─── Mutation: create a new question ───
   const createQuestionMutation = useMutation({
     mutationFn: async (payload: {
       formId: string;
@@ -63,7 +62,6 @@ export default function EditorViewPage({ form }: { form: Form }) {
     },
   });
 
-  // ─── Mutation: update a question ───
   const updateQuestionMutation = useMutation({
     mutationFn: async ({
       questionId,
@@ -228,28 +226,18 @@ export default function EditorViewPage({ form }: { form: Form }) {
           </DropdownMenu>
         </div>
 
-        <Card className="border-t-8 border-t-primary shadow-md mb-6">
-          <CardHeader>
-            <Input
-              className="text-2xl font-bold border-none px-0"
-              value={displayTitle}
-              onChange={(e) => setLocalTitle(e.target.value)}
-              onBlur={(e) => {
-                updateFormMutation.mutate({ title: e.target.value });
-                setLocalTitle(null);
-              }}
-            />
-            <Input
-              className="mt-2 border-none px-0"
-              value={displayDescription}
-              onChange={(e) => setLocalDescription(e.target.value)}
-              onBlur={(e) => {
-                updateFormMutation.mutate({ description: e.target.value });
-                setLocalDescription(null);
-              }}
-            />
-          </CardHeader>
-        </Card>
+        <FormHeader
+          title={displayTitle}
+          description={displayDescription}
+          onChangeTitle={setLocalTitle}
+          onBlurTitle={(value) =>
+            updateFormMutation.mutate({ title: value })
+          }
+          onChangeDescription={setLocalDescription}
+          onBlurDescription={(value) =>
+            updateFormMutation.mutate({ description: value })
+          }
+        />
 
         {form.questions?.map((question, index) => (
           <QuestionCard

@@ -33,6 +33,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/src/components/ui/dropdown-menu";
+import { Label } from "@/src/components/ui/label";
 
 interface Form {
   id: string;
@@ -65,14 +66,12 @@ export default function FormsPage() {
       if (currentSearch) params.append("search", currentSearch);
       if (currentSort) params.append("sort", currentSort);
 
-      const response = await customFetch<Form[]>(
+      return await customFetch<Form[]>(
         `/forms?${params.toString()}`,
         {
           method: "GET",
         },
       );
-
-      return response;
     },
   });
 
@@ -156,7 +155,7 @@ export default function FormsPage() {
   return (
     <div className="min-h-screen bg-secondary/10">
       <main className="container mx-auto max-w-6xl px-4 py-8">
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex md:items-center md:justify-between mb-8 gap-3 max-md:flex-col">
           <div>
             <h1 className="text-3xl font-bold tracking-tight">Forms</h1>
             <p className="text-muted-foreground mt-1">
@@ -164,7 +163,7 @@ export default function FormsPage() {
             </p>
           </div>
           <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger>
+            <DialogTrigger className="max-md:w-fit">
               <Plus className="w-4 h-4 mr-2" /> Create New Form
             </DialogTrigger>
             <DialogContent>
@@ -175,14 +174,14 @@ export default function FormsPage() {
                 </DialogDescription>
               </DialogHeader>
               <div className="space-y-2">
-                <label htmlFor="form-title">Form Title</label>
+                <Label htmlFor="form-title">Form Title</Label>
                 <Input
                   id="form-title"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="Enter form title"
                 />
-                <label htmlFor="form-description">Form Description</label>
+                <Label htmlFor="form-description">Form Description</Label>
                 <Input
                   id="form-description"
                   value={description}

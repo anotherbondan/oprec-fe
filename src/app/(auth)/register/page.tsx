@@ -16,6 +16,7 @@ import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { customFetch } from "@/src/lib/api-client";
 import { toast } from "sonner";
+import { Label } from "@/src/components/ui/label";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -73,15 +74,15 @@ export default function RegisterPage() {
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
-          <label htmlFor="name" className="text-sm font-medium leading-none">
+          <Label htmlFor="name" className="text-sm font-medium leading-none">
             Full Name
-          </label>
+          </Label>
           <Input id="name" type="text" placeholder="John Doe" required onChange={handleChange} disabled={registerMutation.isPending}/>
         </div>
         <div className="space-y-2">
-          <label htmlFor="email" className="text-sm font-medium leading-none">
+          <Label htmlFor="email" className="text-sm font-medium leading-none">
             Email
-          </label>
+          </Label>
           <Input
             id="email"
             type="email"
@@ -92,12 +93,12 @@ export default function RegisterPage() {
           />
         </div>
         <div className="space-y-2">
-          <label
+          <Label
             htmlFor="password"
             className="text-sm font-medium leading-none"
           >
             Password
-          </label>
+          </Label>
           <Input
             id="password"
             type="password"
@@ -108,12 +109,12 @@ export default function RegisterPage() {
           />
         </div>
         <div className="space-y-2">
-          <label
+          <Label
             htmlFor="confirmPassword"
             className="text-sm font-medium leading-none"
           >
             Confirm Password
-          </label>
+          </Label>
           <Input
             id="confirmPassword"
             type="password"

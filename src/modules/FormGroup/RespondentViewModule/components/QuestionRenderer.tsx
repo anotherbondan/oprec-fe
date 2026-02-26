@@ -3,6 +3,16 @@
 import React from "react";
 import { Card, CardContent } from "@/src/components/ui/card";
 import { Input } from "@/src/components/ui/input";
+import { Label } from "@/src/components/ui/label";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/src/components/ui/dropdown-menu";
+import { Button } from "@/src/components/ui/button";
+import { ChevronDown } from "lucide-react";
 
 interface Option {
   id: string;
@@ -57,11 +67,11 @@ export default function QuestionRenderer({
         return (
           <div className="mt-3 space-y-2">
             {question.options.map((opt) => (
-              <label
+              <Label
                 key={opt.id}
                 className="flex items-center gap-3 cursor-pointer rounded-lg border border-input px-4 py-3 transition-colors hover:bg-accent/50 has-checked:border-primary has-checked:bg-primary/5"
               >
-                <input
+                <Input
                   type="radio"
                   name={`question-${question.id}`}
                   value={opt.text}
@@ -70,7 +80,7 @@ export default function QuestionRenderer({
                   className="h-4 w-4 accent-primary"
                 />
                 <span className="text-sm">{opt.text}</span>
-              </label>
+              </Label>
             ))}
           </div>
         );
@@ -87,19 +97,21 @@ export default function QuestionRenderer({
         return (
           <div className="mt-3 space-y-2">
             {question.options.map((opt) => (
-              <label
+              <Label
                 key={opt.id}
                 className="flex items-center gap-3 cursor-pointer rounded-lg border border-input px-4 py-3 transition-colors hover:bg-accent/50 has-checked:border-primary has-checked:bg-primary/5"
               >
-                <input
-                  type="checkbox"
-                  value={opt.text}
-                  checked={selectedValues.includes(opt.text)}
-                  onChange={() => toggleOption(opt.text)}
-                  className="h-4 w-4 accent-primary rounded"
-                />
-                <span className="text-sm">{opt.text}</span>
-              </label>
+                <div className="">
+                  <Input
+                    type="checkbox"
+                    value={opt.text}
+                    checked={selectedValues.includes(opt.text)}
+                    onChange={() => toggleOption(opt.text)}
+                    className="h-4 w-4 accent-primary rounded"
+                  />
+                </div>
+                <span className="text-sm w-full">{opt.text}</span>
+              </Label>
             ))}
           </div>
         );
@@ -107,18 +119,30 @@ export default function QuestionRenderer({
 
       case "DROPDOWN":
         return (
-          <select
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
-            className="mt-2 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-          >
-            <option value="">Select an option</option>
-            {question.options.map((opt) => (
-              <option key={opt.id} value={opt.text}>
-                {opt.text}
-              </option>
-            ))}
-          </select>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="outline"
+                className="w-fit justify-between mt-2 font-normal"
+              >
+                {value ? value : "Select an option"}
+                <ChevronDown className="w-4 h-4 ml-2 opacity-50" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="w-full">
+              <DropdownMenuGroup>
+                {question.options.map((opt) => (
+                  <DropdownMenuItem
+                    key={opt.id}
+                    onClick={() => onChange(opt.text)}
+                    className="cursor-pointer"
+                  >
+                    {opt.text}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
         );
 
       default:
