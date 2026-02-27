@@ -71,14 +71,16 @@ export default function QuestionRenderer({
                 key={opt.id}
                 className="flex items-center gap-3 cursor-pointer rounded-lg border border-input px-4 py-3 transition-colors hover:bg-accent/50 has-checked:border-primary has-checked:bg-primary/5"
               >
-                <Input
-                  type="radio"
-                  name={`question-${question.id}`}
-                  value={opt.text}
-                  checked={value === opt.text}
-                  onChange={(e) => onChange(e.target.value)}
-                  className="h-4 w-4 accent-primary"
-                />
+                <div className="">
+                  <Input
+                    type="radio"
+                    name={`question-${question.id}`}
+                    value={opt.text}
+                    checked={value === opt.text}
+                    onChange={(e) => onChange(e.target.value)}
+                    className="h-4 w-4 accent-primary"
+                  />
+                </div>
                 <span className="text-sm">{opt.text}</span>
               </Label>
             ))}
