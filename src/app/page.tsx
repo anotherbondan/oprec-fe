@@ -6,110 +6,152 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/src/components/ui/card";
-import { Input } from "@/src/components/ui/input";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/src/components/ui/dialog";
-import { toast } from "sonner";
-import { Navbar } from "@/src/components/elements/Navbar";
-import { Footer } from "@/src/components/elements/Footer";
 import { ArrowRight, BarChart3, ShieldCheck, Zap } from "lucide-react";
+import Marquee from "../../node_modules/react-fast-marquee/dist/index.js";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-background font-sans antialiased">
-      <Navbar />
-
+    <div className="flex flex-col min-h-screen bg-background font-sans antialiased overflow-hidden">
       <main className="w-full flex-1">
-        <section className="container mx-auto max-w-6xl pt-32 pb-32 flex flex-col items-center text-center space-y-8 px-4 md:px-6">
-          <Badge variant="secondary" className="px-4 py-1 text-sm rounded-full">
+        <section className="container mx-auto max-w-6xl pt-32 pb-20 flex flex-col items-center text-center space-y-8 px-4 md:px-6 relative">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-100 bg-primary/10 blur-[100px] rounded-full -z-10 pointer-events-none" />
+
+          <Badge className="py-1 px-3 text-sm">
             ✨ Form Builder v1.0 Now Available
           </Badge>
 
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight max-w-4xl text-foreground">
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight max-w-4xl text-foreground">
             Collect Data Easily with{" "}
-            <span className="text-primary">Smart Forms</span>
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-blue-600">
+              Smart Forms
+            </span>
           </h1>
 
-          <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
             Dynamic form builder platform for surveys, registrations, and
             questionnaires. Designed for speed of creation, ease of sharing, and
             real-time response analysis.
           </p>
 
           <div className="flex flex-wrap gap-4 justify-center pt-6">
-            <Button size="lg" className="px-8 shadow-lg">
-              Create Free Form <ArrowRight className="ml-2 w-4 h-4" />
+            <Button size="lg">
+              Create Free Form
+              <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
             </Button>
-            <Button variant="outline" size="lg" className="px-8">
+            <Button variant="outline" size="lg">
               Explore Features
             </Button>
           </div>
         </section>
 
-        <section className="w-full bg-secondary/20 py-24">
+        <section className="w-full py-12 border-y bg-muted/30 relative">
+          <div className="absolute inset-y-0 left-0 w-1/8 bg-linear-to-r from-background to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-1/8 bg-linear-to-l from-background to-transparent z-10 pointer-events-none" />
+
+          <div className="w-full flex flex-col items-center">
+            <p className="text-sm font-medium text-muted-foreground mb-8 uppercase tracking-widest px-4">
+              Trusted by innovative teams worldwide
+            </p>
+
+            <Marquee
+              speed={40}
+              gradient={false}
+              pauseOnHover={true}
+              className="py-4 overflow-y-hidden"
+            >
+              <div className="flex items-center gap-2 text-muted-foreground/60 grayscale hover:grayscale-0 transition-all mx-12">
+                <img src="aws.svg" alt="" className="h-12 w-auto" />
+              </div>
+              <div className="flex items-center gap-2 text-muted-foreground/60 grayscale hover:grayscale-0 transition-all mx-12">
+                <img src="spotify.png" alt="" className="h-12 w-auto" />
+              </div>
+              <div className="flex items-center gap-2 text-muted-foreground/60 grayscale hover:grayscale-0 transition-all mx-12">
+                <img src="aws.svg" alt="" className="h-12 w-auto" />
+              </div>
+              <div className="flex items-center gap-2 text-muted-foreground/60 grayscale hover:grayscale-0 transition-all mx-12">
+                <img src="mastercard.svg" alt="" className="h-12 w-auto" />
+              </div>
+              <div className="flex items-center gap-2 text-muted-foreground/60 grayscale hover:grayscale-0 transition-all mx-12">
+                <img src="aws.svg" alt="" className="h-12 w-auto" />
+              </div>
+              <div className="flex items-center gap-2 text-muted-foreground/60 grayscale hover:grayscale-0 transition-all mx-12">
+                <img src="google.svg" alt="" className="h-12 w-auto" />
+              </div>
+              <div className="flex items-center gap-2 text-muted-foreground/60 grayscale hover:grayscale-0 transition-all mx-12">
+                <img src="aws.svg" alt="" className="h-12 w-auto" />
+              </div>
+            </Marquee>
+          </div>
+        </section>
+
+        <section className="w-full py-32">
           <div className="container mx-auto max-w-6xl px-4 md:px-6">
+            <div className="text-center mb-16 space-y-4">
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
+                Everything you need to collect data
+              </h2>
+              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                Powerful features built right in to help you build, share, and
+                analyze your forms without any hassle.
+              </p>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <Card className="bg-background border-none shadow-sm hover:shadow-lg transition-all duration-300">
+              <Card className="border bg-card/50 backdrop-blur-sm shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
                 <CardHeader>
-                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4 text-primary">
-                    <Zap className="w-6 h-6" />
+                  <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
+                    <Zap className="w-7 h-7" />
                   </div>
-                  <CardTitle>Instant Creation</CardTitle>
-                  <CardDescription>
+                  <CardTitle className="text-xl">Instant Creation</CardTitle>
+                  <CardDescription className="text-md">
                     Design complex forms in minutes.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Use an intuitive interface to add various input types
-                    without needing coding skills.
+                  <p className="text-muted-foreground leading-relaxed">
+                    Use an intuitive drag-and-drop interface to add various
+                    input types without needing a single line of code.
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-background border-none shadow-sm hover:shadow-lg transition-all duration-300">
+              <Card className="border bg-card/50 backdrop-blur-sm shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
                 <CardHeader>
-                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4 text-primary">
-                    <ShieldCheck className="w-6 h-6" />
+                  <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
+                    <ShieldCheck className="w-7 h-7" />
                   </div>
-                  <CardTitle>Validation & Security</CardTitle>
-                  <CardDescription>
+                  <CardTitle className="text-xl">
+                    Validation & Security
+                  </CardTitle>
+                  <CardDescription className="text-md">
                     Collect accurate data kept securely.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Equipped with built-in input validation to prevent spam data
-                    and encryption to protect your respondents' privacy.
+                  <p className="text-muted-foreground leading-relaxed">
+                    Equipped with built-in input validation to prevent spam and
+                    strong encryption to protect respondents' privacy.
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-background border-none shadow-sm hover:shadow-lg transition-all duration-300">
+              <Card className="border bg-card/50 backdrop-blur-sm shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
                 <CardHeader>
-                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4 text-primary">
-                    <BarChart3 className="w-6 h-6" />
+                  <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
+                    <BarChart3 className="w-7 h-7" />
                   </div>
-                  <CardTitle>Response Analysis</CardTitle>
-                  <CardDescription>
-                    Monitor data collection results in real-time.
+                  <CardTitle className="text-xl">Response Analysis</CardTitle>
+                  <CardDescription className="text-md">
+                    Monitor results in real-time.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Get direct insights from incoming responses via a clean and
-                    easily exportable analytics dashboard.
+                  <p className="text-muted-foreground leading-relaxed">
+                    Get direct insights from incoming responses via a clean,
+                    interactive, and easily exportable analytics dashboard.
                   </p>
                 </CardContent>
               </Card>
@@ -117,145 +159,23 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="container mx-auto max-w-6xl py-24 px-4 md:px-6">
-          <div className="flex flex-col md:flex-row gap-12 lg:gap-20 items-center justify-center">
-            <div className="flex-1 space-y-6 max-w-lg">
-              <h2 className="text-3xl font-bold tracking-tight">
-                Manage Forms in One Place
-              </h2>
-              <p className="text-muted-foreground text-lg leading-relaxed">
-                Our interface is designed to be user-friendly. You can create
-                new forms, set privacy, and share survey links with just a few
-                clicks.
-              </p>
-
-              <div className="flex flex-wrap gap-4 pt-2">
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button variant="default" className="shadow-md">
-                      Try Creating a Form
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="sm:max-w-106.25">
-                    <DialogHeader>
-                      <DialogTitle>New Form</DialogTitle>
-                      <DialogDescription>
-                        Define the title and description for your first form.
-                      </DialogDescription>
-                    </DialogHeader>
-                    <div className="grid gap-4 py-4">
-                      <div className="grid grid-cols-4 items-center gap-4">
-                        <label
-                          htmlFor="title"
-                          className="text-right text-sm font-medium"
-                        >
-                          Title
-                        </label>
-                        <Input
-                          id="title"
-                          defaultValue="Satisfaction Survey"
-                          className="col-span-3"
-                        />
-                      </div>
-                      <div className="grid grid-cols-4 items-center gap-4">
-                        <label
-                          htmlFor="desc"
-                          className="text-right text-sm font-medium"
-                        >
-                          Description
-                        </label>
-                        <Input
-                          id="desc"
-                          defaultValue="Please fill in honestly"
-                          className="col-span-3"
-                        />
-                      </div>
-                    </div>
-                    <DialogFooter>
-                      <Button
-                        type="submit"
-                        onClick={() =>
-                          toast.success("Form successfully created!")
-                        }
-                      >
-                        Save Form
-                      </Button>
-                    </DialogFooter>
-                  </DialogContent>
-                </Dialog>
-
-                <Button
-                  variant="outline"
-                  onClick={() =>
-                    toast("Link Copied", {
-                      description:
-                        "Your form link is ready to be shared with respondents.",
-                      action: {
-                        label: "Close",
-                        onClick: () => console.log("Close"),
-                      },
-                    })
-                  }
-                >
-                  Simulate Share Link
-                </Button>
-              </div>
-            </div>
-
-            <div className="flex-1 w-full max-w-md">
-              <div className="relative">
-                <div className="absolute -top-4 -left-4 w-full h-full bg-primary/10 rounded-2xl blur-2xl"></div>
-
-                <Card className="relative border-muted shadow-xl bg-card">
-                  <CardHeader>
-                    <CardTitle>Creator Access</CardTitle>
-                    <CardDescription>
-                      Login to manage your forms.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium">Email</label>
-                      <Input placeholder="name@email.com" />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium">Password</label>
-                      <Input type="password" placeholder="••••••••" />
-                    </div>
-                  </CardContent>
-                  <CardFooter>
-                    <Button className="w-full shadow-sm">Login</Button>
-                  </CardFooter>
-                </Card>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="container mx-auto max-w-6xl px-4 md:px-6 pb-24 text-center">
-          <div className="bg-primary text-primary-foreground rounded-3xl p-12 md:p-24 shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-full bg-white/5 pointer-events-none"></div>
+        <section className="container mx-auto max-w-6xl px-4 md:px-6 pb-32">
+          <div className="bg-card rounded-[2.5rem] p-12 md:p-24 shadow-2xl relative overflow-hidden text-center">
+            <div className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-96 h-96 bg-white/10 rounded-full blur-3xl pointer-events-none" />
 
             <div className="relative z-10">
               <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">
                 Ready to Create Your First Form?
               </h2>
-              <p className="text-primary-foreground/80 max-w-2xl mx-auto mb-10 text-lg md:text-xl">
+              <p className="max-w-2xl mx-auto mb-10 text-lg md:text-xl">
                 Start collecting data smarter, neater, and more structured.
                 Perfect your decision-making process right now.
               </p>
-              <Button
-                variant="secondary"
-                size="lg"
-                className="font-semibold px-8 h-12 text-md shadow-lg hover:bg-secondary/90 transition-colors"
-              >
-                Start for Free Now
-              </Button>
+              <Button size="lg">Start for Free Now</Button>
             </div>
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   );
 }

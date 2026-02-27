@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button } from "@/src/components/ui/button";
 import { Card, CardHeader } from "@/src/components/ui/card";
 import { Input } from "@/src/components/ui/input";
-import { ArrowLeft, ChevronDown, Plus } from "lucide-react";
+import { ArrowLeft, ChevronDown, Plus, BarChart3 } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { customFetch } from "@/src/lib/api-client";
@@ -21,14 +21,14 @@ import {
   DropdownMenuTrigger,
 } from "@/src/components/ui/dropdown-menu";
 import { FORM_STATUS } from "../const";
-import { Form, Option, Question } from "../interface";
+import { Form, Option, Question, QuestionType } from "../interface";
+import FormHeader from "./components/FormHeader";
 
-export default function EditorViewPage({form}: {form: Form}) {
+export default function EditorViewPage({ form }: { form: Form }) {
   const queryClient = useQueryClient();
   const params = useParams();
   const id = params.id as string;
 
-  // ─── Mutation: update form title/description ───
   const updateFormMutation = useMutation({
     mutationFn: async (payload: Partial<Form>) => {
       return await customFetch(`/forms/${id}`, {
@@ -41,7 +41,6 @@ export default function EditorViewPage({form}: {form: Form}) {
     },
   });
 
-  // ─── Mutation: create a new question ───
   const createQuestionMutation = useMutation({
     mutationFn: async (payload: {
       formId: string;
@@ -63,7 +62,6 @@ export default function EditorViewPage({form}: {form: Form}) {
     },
   });
 
-  // ─── Mutation: update a question ───
   const updateQuestionMutation = useMutation({
     mutationFn: async ({
       questionId,
@@ -193,8 +191,14 @@ export default function EditorViewPage({form}: {form: Form}) {
         <div className="flex w-full items-center justify-between mb-3">
           <Button variant="ghost" className="px-1" asChild>
             <Link href="/forms">
-              <ArrowLeft className="w-4 h-4" />
+              <ArrowLeft className="w-4 h-4 mr-1" />
               Back to Forms
+            </Link>
+          </Button>
+          <Button variant="outline" asChild>
+            <Link href={`/forms/${id}/submissions`}>
+              <BarChart3 className="w-4 h-4 mr-2" />
+              View Submissions
             </Link>
           </Button>
           <DropdownMenu>
@@ -222,28 +226,18 @@ export default function EditorViewPage({form}: {form: Form}) {
           </DropdownMenu>
         </div>
 
-        <Card className="border-t-8 border-t-primary shadow-md mb-6">
-          <CardHeader>
-            <Input
-              className="text-2xl font-bold border-none px-0"
-              value={displayTitle}
-              onChange={(e) => setLocalTitle(e.target.value)}
-              onBlur={(e) => {
-                updateFormMutation.mutate({ title: e.target.value });
-                setLocalTitle(null);
-              }}
-            />
-            <Input
-              className="mt-2 border-none px-0"
-              value={displayDescription}
-              onChange={(e) => setLocalDescription(e.target.value)}
-              onBlur={(e) => {
-                updateFormMutation.mutate({ description: e.target.value });
-                setLocalDescription(null);
-              }}
-            />
-          </CardHeader>
-        </Card>
+        <FormHeader
+          title={displayTitle}
+          description={displayDescription}
+          onChangeTitle={setLocalTitle}
+          onBlurTitle={(value) =>
+            updateFormMutation.mutate({ title: value })
+          }
+          onChangeDescription={setLocalDescription}
+          onBlurDescription={(value) =>
+            updateFormMutation.mutate({ description: value })
+          }
+        />
 
         {form.questions?.map((question, index) => (
           <QuestionCard
@@ -260,7 +254,7 @@ export default function EditorViewPage({form}: {form: Form}) {
             onChangeType={(value) => {
               updateQuestionMutation.mutate({
                 questionId: question.id,
-                payload: { type: value },
+                payload: { type: value as QuestionType },
               });
             }}
             onToggleRequired={(value) =>

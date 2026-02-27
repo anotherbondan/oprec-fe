@@ -16,6 +16,7 @@ import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { customFetch } from "@/src/lib/api-client";
 import { toast } from "sonner";
+import { Label } from "@/src/components/ui/label";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -65,14 +66,9 @@ export default function LoginPage() {
           Enter your email and password to login to dashboard
         </CardDescription>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-2">
         <div className="space-y-2">
-          <label
-            htmlFor="email"
-            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-          >
-            Email
-          </label>
+          <Label htmlFor="email">Email</Label>
           <Input
             id="email"
             type="email"
@@ -83,17 +79,12 @@ export default function LoginPage() {
           />
         </div>
         <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <label
-              htmlFor="password"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Password
-            </label>
-            <Link href="#" className="text-sm text-primary hover:underline">
-              Forgot password?
-            </Link>
-          </div>
+          <Label
+            htmlFor="password"
+            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          >
+            Password
+          </Label>
           <Input
             id="password"
             type="password"
@@ -102,10 +93,18 @@ export default function LoginPage() {
             onChange={handleChange}
             disabled={loginMutation.isPending}
           />
+          <Link href="#" className="text-sm text-primary hover:underline">
+            Forgot password?
+          </Link>
         </div>
       </CardContent>
       <CardFooter className="flex flex-col space-y-4">
-        <Button className="w-full" size="lg" onClick={handleSubmit} disabled={loginMutation.isPending}>
+        <Button
+          className="w-full"
+          size="lg"
+          onClick={handleSubmit}
+          disabled={loginMutation.isPending}
+        >
           Login
         </Button>
         <div className="text-sm text-center text-muted-foreground">

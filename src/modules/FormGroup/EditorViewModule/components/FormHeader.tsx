@@ -24,14 +24,16 @@ export default function FormHeader({
     <Card className="border-t-8 border-t-primary shadow-md mb-6">
       <CardHeader>
         <Input
-          className="text-2xl font-bold border-none px-0"
+          id="title"
+          className="text-2xl font-bold border-none px-3"
           value={title}
           onChange={(e) => onChangeTitle(e.target.value)}
           onBlur={(e) => onBlurTitle(e.target.value)}
         />
 
         <Input
-          className="mt-2 border-none px-0"
+          id="description"
+          className="mt-2 border-none px-3"
           value={description}
           onChange={(e) => onChangeDescription(e.target.value)}
           onBlur={(e) => onBlurDescription(e.target.value)}
