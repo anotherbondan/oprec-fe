@@ -108,7 +108,7 @@ function QuestionCard({
               <OptionItem
                 key={opt.id}
                 value={opt.text}
-                onChange={(val) => onChangeOption(opt.id, val)}
+                onBlur={(val) => onChangeOption(opt.id, val)}
                 onDelete={() => onDeleteOption(opt.id)}
               />
             ))}
