@@ -11,6 +11,7 @@ import {
 } from "@/src/components/ui/card";
 import { ArrowRight, BarChart3, ShieldCheck, Zap } from "lucide-react";
 import Marquee from "../../node_modules/react-fast-marquee/dist/index.js";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -37,10 +38,12 @@ export default function Home() {
           </p>
 
           <div className="flex flex-wrap gap-4 justify-center pt-6">
-            <Button size="lg">
-              Create Free Form
-              <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </Button>
+            <Link href="/forms">
+              <Button size="lg">
+                Create Free Form
+                <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </Link>
             <Button variant="outline" size="lg">
               Explore Features
             </Button>
