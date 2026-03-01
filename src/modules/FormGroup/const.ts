@@ -13,12 +13,18 @@ export const FORM_STATUS = [
 ] as const;
 
 export const FALLBACK_COLORS = [
-  "#e76e50",
-  "#2a9d8f",
-  "#264653",
+  "#65A30D",
   "#e9c46a",
+  "#2563EB",
   "#f4a261",
-  "#7c3aed",
-  "#06b6d4",
+  "#2a9d8f",
+  "#ffc0cb",
+  "#C026D3",
   "#f43f5e",
+  "#7c3aed",
+  "#E11D48",
+  "#e76e50",
+  "#059669",
+  "#0891B2",
+  "#D97706",
 ];
