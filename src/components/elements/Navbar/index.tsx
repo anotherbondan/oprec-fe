@@ -96,10 +96,11 @@ export function Navbar() {
               <Button
                 variant="ghost"
                 className="max-lg:hidden sm:inline-flex text-muted-foreground hover:text-foreground"
+                asChild
               >
                 <Link href="/login">Login</Link>
               </Button>
-              <Button className="font-medium shadow-sm max-lg:hidden">
+              <Button className="font-medium shadow-sm max-lg:hidden" asChild>
                 <Link href="/register">Sign Up</Link>
               </Button>
             </>
@@ -168,12 +169,14 @@ export function Navbar() {
                   variant="outline"
                   className=" text-muted-foreground hover:text-foreground"
                   onClick={() => setOpen(false)}
+                  asChild
                 >
                   <Link href="/login">Login</Link>
                 </Button>
                 <Button
                   className="font-medium shadow-sm"
                   onClick={() => setOpen(false)}
+                  asChild
                 >
                   <Link href="/register">Sign Up</Link>
                 </Button>
