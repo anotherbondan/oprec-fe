@@ -34,6 +34,7 @@ import {
   DropdownMenuTrigger,
 } from "@/src/components/ui/dropdown-menu";
 import { Label } from "@/src/components/ui/label";
+import { useAuth } from "@/src/hooks/useAuth";
 
 interface Form {
   id: string;
@@ -55,6 +56,14 @@ export default function FormsPage() {
 
   const [searchInput, setSearchInput] = useState(currentSearch);
 
+  const { isLoading: isAuthLoading, user: currentUser } = useAuth();
+
+  useEffect(() => {
+    if (!isAuthLoading && !currentUser) {
+      router.push("/login");
+    }
+  }, [isAuthLoading, currentUser, router]);
+
   const {
     data: forms,
     isLoading,
@@ -66,12 +75,9 @@ export default function FormsPage() {
       if (currentSearch) params.append("search", currentSearch);
       if (currentSort) params.append("sort", currentSort);
 
-      return await customFetch<Form[]>(
-        `/forms?${params.toString()}`,
-        {
-          method: "GET",
-        },
-      );
+      return await customFetch<Form[]>(`/forms?${params.toString()}`, {
+        method: "GET",
+      });
     },
   });
 
@@ -278,7 +284,12 @@ export default function FormsPage() {
               </CardContent>
 
               <CardFooter className="p-4 flex gap-2 border-t mt-2">
-                <Button variant="outline" size="sm" className="flex-1 p-2" asChild>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="flex-1 p-2"
+                  asChild
+                >
                   <Link href={`/forms/${form.id}`}>
                     <Eye className="w-4 h-4 mr-2" /> View
                   </Link>
